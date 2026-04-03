@@ -55,8 +55,11 @@
   3. **문제 3:** (추가로 발생한 문제와 해결 과정을 객관적으로 자유롭게 기록하세요.)
      
 ### **📁 증빙 자료:**
-  * [1차_AI협업캡처.pdf 첨부 완료] (첨부 후 링크)
-  * [1차과제_실행결과.jpg]
+  * [AI협업 캡쳐.pdf](https://github.com/user-attachments/files/26453749/AI.pdf)
+
+  * <img width="787" height="536" alt="1차과제_실행결과" src="https://github.com/user-attachments/assets/67fcea90-9dd3-4edb-a3f4-77b8ae5a9c47" />
+
+
 
 <br>
 
