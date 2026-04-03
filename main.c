@@ -25,16 +25,16 @@ int main()
   printf("--------------------------------------------------------------\n");
 
   printf(" 1. 오늘 먹은 점심의 카테고리 코드를 입력하세요: ");
-  scanf("%c",, &category_code);
+  scanf("%c", &category_code);
 
   printf("2. 탄수화물 섭취량(g)을 정수로 입력하세요: ");
-  scanf("%c",, &crab_grams);
+  scanf("%d", &crab_grams);
 
   printf("3. 단백질 섭취량(g)을 정수로 입력하세요: ");
-  scanf("%c",, &protein_grams);
+  scanf("%d", &protein_grams);
   
   printf("4. 지방 섭취량(g)을 소수점 포함해서 입력하세요: ");
-  scanf("%c",, &fat_grams);
+  scanf("%lf", &fat_grams);
 
   //3. 산술 연산 처리 (순차 구조 유지)
   total_categories = (crab_grams * 4) + (protein_grams * 4) + ( fat_grams * 9.0);
