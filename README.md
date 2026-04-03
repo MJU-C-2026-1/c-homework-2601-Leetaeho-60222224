@@ -57,7 +57,8 @@
 ### **📁 증빙 자료:**
   * [AI협업 캡쳐.pdf](https://github.com/user-attachments/files/26453749/AI.pdf)
 
-  * <img width="802" height="379" alt="1차과제 실행결과" src="https://github.com/user-attachments/assets/36021e15-2a1c-4771-a769-41e513ad70f0" />
+  * <img width="779" height="316" alt="1차과제_실행결과" src="https://github.com/user-attachments/assets/caace186-dd31-4128-9003-dfa93d51412f" />
+
 
 
 
