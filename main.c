@@ -37,7 +37,7 @@ int main()
   scanf("%lf", &fat_grams);
 
   //3. 산술 연산 처리 (순차 구조 유지)
-  total_categories = (crab_grams * 4) + (protein_grams * 4) + ( fat_grams * 9.0);
+  total_calories = (crab_grams * 4) + (protein_grams * 4) + ( fat_grams * 9.0);
 
   //4. 결과 출력
   printf("\n=== 카테고리 '%c'의 칼로리 계산 결과===\n", category_code );
