@@ -43,9 +43,9 @@ int main()
   printf("\n=== 카테고리 '%c'의 칼로리 계산 결과===\n", category_code );
   printf("- 탄수화물 %dg : %d kcal\n", carb_grams, carb_grams * 4);
   printf("- 단백질 %dg : %d kcal\n", protein_grams, protein_grams * 4);
-  printf("- 지방 %.lfg : %.lf kcal\n", fat_grams, fat_grams * 9.0);
+  printf("- 지방 %.1fg : %.1f kcal\n", fat_grams, fat_grams * 9.0);
   printf("--------------------------------------------------------------\n");
-  printf("▶ 총 섭취 칼로리 : %.lf kcal\n", total_calories);
+  printf("▶ 총 섭취 칼로리 : %.1f kcal\n", total_calories);
   printf("==============================================================\n");
   
   return 0;
