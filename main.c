@@ -48,5 +48,5 @@ int main()
   printf("▶ 총 섭취 칼로리 : %.lf kcal\n", total_calories);
   printf("==============================================================\n");
   
-    return 0;
+  return 0;
 }
