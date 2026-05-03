@@ -59,8 +59,8 @@ int main()
 
   // 실제 비율(%) 계산 = (각 영양소 칼로리 / 총 칼로리) * 100
   carb_ratio = (carb_grams * 4.0) / total_calories * 100;
-  protein_ratio = (carb_grams * 4.0) / total_calories * 100;
-  fat_ratio = (carb_grams * 9.0) / total_calories * 100;
+  protein_ratio = ( protein_grams * 4.0) / total_calories * 100;
+  fat_ratio = (fat_grams * 9.0) / total_calories * 100;
 
   // 목표 섭취량(g) 계산 (총칼로리 기준 비율 5:3:2로 역산)
   target_carb = (total_calories * 0.50) / 4.0;
@@ -136,7 +136,7 @@ if (total_calories <= 500.0)
       printf(" -단백질 부족: 고기/계란을 약 %.1fg 늘리세요.\n", target_protein - protein_grams);
     }
     //지방 검사
-    if (fat_ratio > 35.0)
+    if (fat_ratio > 15.0)
     {
       printf(" -지방 초과: 기름진 음식 약 %.1fg 줄이세요.\n", fat_grams - target_fat);
     }
@@ -148,7 +148,7 @@ if (total_calories <= 500.0)
 }
   
 // 800kcal 이하
-if (total_calories <= 800.0)
+else if (total_calories <= 800.0)
 {
   printf("일반적 식단입니다.\n");
   
@@ -178,7 +178,7 @@ if (total_calories <= 800.0)
       printf(" -단백질 부족: 고기/계란을 약 %.1fg 늘리세요.\n", target_protein - protein_grams);
     }
     //지방 검사
-    if (fat_ratio > 35.0)
+    if (fat_ratio > 15.0)
     {
       printf(" -지방 주의: 기름진 음식 약 %.1fg 줄이세요.\n", fat_grams - target_fat);
     }
@@ -215,7 +215,7 @@ else
     {
       printf(" -단백질 폭식: 단백질도 많이 먹으면 살찝니다. 약 %.1fg 줄이세요.\n", protein_grams - target_protein);
     }
-    if (protein_ratio < 25.0)
+    if (protein_ratio < 15.0)
     {
       printf(" -단백질 부족: 칼로리만 높고 영양가가 없네요. 고기/계란을 약 %.1fg 늘리세요.\n", target_protein - protein_grams);
     }
