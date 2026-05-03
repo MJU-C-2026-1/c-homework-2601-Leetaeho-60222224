@@ -71,7 +71,8 @@
   * 내용.
   * 1. switch~case문을 활용하여 알파벳을 한식, 양식 등 실제 메뉴 이름으로 변환해서 출력하도록 함.
     2. 기존 총칼로리 계산 수치만 보여주고 프로그램이 종료되었으나 다중 조건문을 활용하여 계산된 총칼로리를 바탕으로 다양한 피드백을 제공하        는 기능을 추가함.
-    3. 연잔자 ||를 활용하여 패스트 푸드('F' 또는 'f')를 입력했을 경우 경고 멘트를 추가함
+    3. 탄단지 비율에 대한 변수와 목표로 하는 양에 대한 변수를 추가함.
+    4. 연잔자 ||를 활용하여 패스트 푸드('F' 또는 'f')를 입력했을 경우 경고 멘트를 추가함.
     
 ### **🤖 AI 파트너십 과정**
  1. **내용 1**
@@ -85,8 +86,19 @@
      * **해결:** print문 안에서 순수한 문자로 퍼센트 기호를 화면에 보여주고 싶을때는 %%로 써야한다는 것을 알고 사용함.
      
 ### **📁 증빙 자료:**
-  * [2차_AI협업캡처.pdf 첨부 완료] (첨부 후 링크)
-  * [2차과제_실행결과.jpg]
+  * <img width="901" height="1964" alt="AI 협업 캡쳐" src="https://github.com/user-attachments/assets/27ef57a1-9158-421e-bb7b-eaa52896b20d" />
+  * <img width="584" height="517" alt="실행1" src="https://github.com/user-attachments/assets/e6662e3d-ed11-4e1a-b154-2a2897898d38" />
+  * <img width="605" height="593" alt="실행 2" src="https://github.com/user-attachments/assets/1748adcb-2b95-42dc-b414-048d0eb59cc1" />
+  * <img width="612" height="544" alt="실행 3" src="https://github.com/user-attachments/assets/9f303aa5-7368-438f-902e-239acbb95c94" />
+  * <img width="756" height="633" alt="실행 4" src="https://github.com/user-attachments/assets/10c100b5-6c83-43fd-a3c9-c33eb681bc4a" />
+  * <img width="752" height="568" alt="실행5" src="https://github.com/user-attachments/assets/5ebd583b-4cc6-4806-ba80-ebcdd72991f5" />
+  * <img width="583" height="303" alt="실행6" src="https://github.com/user-attachments/assets/3abaad83-4dd2-464d-9467-1595fced4ecd" />
+
+
+
+
+
+
 <br>
 
 ## 🟨 [3차 과제: V3.0] 무한 루프와 메뉴 시스템 (반복문) - 향후 작성 예정
