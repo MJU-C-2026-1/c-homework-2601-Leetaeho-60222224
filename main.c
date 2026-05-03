@@ -231,5 +231,11 @@ else
   }
 }
 
+// 패스트 푸드 경고
+  if (category_code == 'F' || catagory_code =='f'
+  {
+    printf("경고 : 패스트 푸드를 드셨군요!\n");
+    printf("칼로리와 비율이 좋더라도 안심할 수 없습니다."\n);
+  }
   return 0;
 }
