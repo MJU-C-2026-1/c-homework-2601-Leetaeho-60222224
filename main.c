@@ -81,7 +81,7 @@ int main()
     case 'C': case'c':
       printf("중식");
       break;
-    case 'F': case'\f:
+    case 'F': case'f':
       printf("패스트푸드");
       break;
     case 'S': case's':
@@ -92,14 +92,14 @@ int main()
       break;
   }
   
-  printf(" 의 칼로리 계산 결과===\n", category_code );
+  printf(" 의 칼로리 계산 결과===\n");
   printf("- 탄수화물 %dg : %d kcal\n", carb_grams, carb_grams * 4);
   printf("- 단백질 %dg : %d kcal\n", protein_grams, protein_grams * 4);
   printf("- 지방 %.1fg : %.1f kcal\n", fat_grams, fat_grams * 9.0);
   printf("--------------------------------------------------------------\n");
   printf("▶ 총 섭취 칼로리 : %.1f kcal\n", total_calories);
   //계산된 비율 화면 출력
-  printf("▶ 탄/단/지 비율 : %.1f% / %.1f%/ %.1f%\n",carb_ratio, protein_ratio, fat_ratio);
+  printf("▶ 탄/단/지 비율 : %.1f%% / %.1f%%/ %.1f%%\n",carb_ratio, protein_ratio, fat_ratio);
   printf("--------------------------------------------------------------\n");
 
 //5. 다이어트 피드백
@@ -110,7 +110,7 @@ if (total_calories <= 500.0)
 {
   printf("다이어트에 완벽한 저칼로리 식단입니다.\n");
   
-  if(carb_ratio >= 45.0 && carb_ratio <= 55.0 && protein_ratio>=25.0 && proterin_ratio <= 35.0 && fat_ratio>= 15.0 && fat_ratio <=25.0)
+  if(carb_ratio >= 45.0 && carb_ratio <= 55.0 && protein_ratio>=25.0 && protein_ratio <= 35.0 && fat_ratio>= 15.0 && fat_ratio <=25.0)
   {
     printf(" 탄단지 5:3:2 황금비율까지 맞췄습니다.\n");
   }
@@ -124,7 +124,7 @@ if (total_calories <= 500.0)
      }
    if (carb_ratio < 45.0)
      {
-       printf(" - 탄수화물 부족: 밥이나 면을 약 %./1fg 늘리세요.\n", target_carb - carb_grams);
+       printf(" - 탄수화물 부족: 밥이나 면을 약 %.1fg 늘리세요.\n", target_carb - carb_grams);
      }
     //단백질 검사
     if (protein_ratio > 35.0)
@@ -152,9 +152,9 @@ else if (total_calories <= 800.0)
 {
   printf("일반적 식단입니다.\n");
   
-  if(carb_ratio >= 45.0 && carb_ratio <= 55.0 && protein_ratio>=25.0 && proterin_ratio <= 35.0 && fat_ratio>= 15.0 && fat_ratio <=25.0)
+  if(carb_ratio >= 45.0 && carb_ratio <= 55.0 && protein_ratio>=25.0 && protein_ratio <= 35.0 && fat_ratio>= 15.0 && fat_ratio <=25.0)
   {
-    printf(" 칼로리는 무난하고, 탄단지 비율이 훌륭합니.\n");
+    printf(" 칼로리는 무난하고, 탄단지 비율이 훌륭합니다.\n");
   }
   else
   {
@@ -166,7 +166,7 @@ else if (total_calories <= 800.0)
      }
    if (carb_ratio < 45.0)
      {
-       printf(" - 탄수화물 부족: 밥이나 면을 약 %./1fg 늘리세요.\n", target_carb - carb_grams);
+       printf(" - 탄수화물 부족: 밥이나 면을 약 %.1fg 늘리세요.\n", target_carb - carb_grams);
      }
     //단백질 검사
     if (protein_ratio > 35.0)
@@ -194,7 +194,7 @@ else
 {
   printf("다이어트 기준을 크게 초과한 고칼로리입니다. 내일 운동 필수!\n");
   
-  if(carb_ratio >= 45.0 && carb_ratio <= 55.0 && protein_ratio>=25.0 && proterin_ratio <= 35.0 && fat_ratio>= 15.0 && fat_ratio <=25.0)
+  if(carb_ratio >= 45.0 && carb_ratio <= 55.0 && protein_ratio>=25.0 && protein_ratio <= 35.0 && fat_ratio>= 15.0 && fat_ratio <=25.0)
   {
     printf(" 양이 많지만, 비율 자체는 훌륭합니다. 다음엔 양만 줄이세요\n");
   }
@@ -208,7 +208,7 @@ else
      }
    if (carb_ratio < 45.0)
      {
-       printf(" - 탄수화물 부족: 고칼로리인데 탄수화물은 부족하네요. 밥이나 면을 약 %./1fg 늘리세요.\n", target_carb - carb_grams);
+       printf(" - 탄수화물 부족: 고칼로리인데 탄수화물은 부족하네요. 밥이나 면을 약 %.1fg 늘리세요.\n", target_carb - carb_grams);
      }
     //단백질 검사
     if (protein_ratio > 35.0)
@@ -232,10 +232,10 @@ else
 }
 
 // 패스트 푸드 경고
-  if (category_code == 'F' || catagory_code =='f'
+  if (category_code == 'F' || category_code =='f')
   {
     printf("경고 : 패스트 푸드를 드셨군요!\n");
-    printf("칼로리와 비율이 좋더라도 안심할 수 없습니다."\n);
+    printf("칼로리와 비율이 좋더라도 안심할 수 없습니다.\n");
   }
   return 0;
 }
