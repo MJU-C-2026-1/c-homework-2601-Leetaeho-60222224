@@ -211,7 +211,7 @@ void print_daily_feedback(char name[], int input_days)
           {
             printf(" -지방 초과: 기름진 음식 약 %.1fg 줄이세요.\n", fat_grams[i] - target_fat);
           }
-          if (protein_ratio[i] < 25.0)
+          if (fat_ratio[i] < 25.0)
           {
             printf(" -지방 부족: 견과류 등으로 약 %.1fg 늘리세요.\n", target_fat - fat_grams[i]);
           }
@@ -255,7 +255,7 @@ void print_final_analysis(char name[], int input_days)
     {
       max_day = i;
     }
-    if (total_calories[i] > total_calories[min_day])
+    if (total_calories[i] < total_calories[min_day])
     {
       min_day = i;
     }
