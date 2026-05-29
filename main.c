@@ -32,7 +32,7 @@ int main()
   
   while (1)
     {
-    void disply_menu(); //함수 호출
+      disply_menu(); //함수 호출
 
       printf("원하는 메뉴 번호를 입력하세요 :");
       scanf("%d", &menu_choice);
@@ -75,7 +75,7 @@ int main()
 }
 
 //메뉴 UI 출력
-void display_menu()
+void disply_menu()
 {
   printf("====================================\n");
   printf(" 다이어트 점심 칼로리 계산기 \n");
