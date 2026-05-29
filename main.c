@@ -207,11 +207,11 @@ void print_daily_feedback(char name[], int input_days)
             printf(" -단백질 부족: 고기/계란을 약 %.1fg 늘리세요.\n", target_protein - protein_grams[i]);
           }
           //지방 검사
-          if (fat_ratio[i] > 15.0)
+          if (fat_ratio[i] > 25.0)
           {
             printf(" -지방 초과: 기름진 음식 약 %.1fg 줄이세요.\n", fat_grams[i] - target_fat);
           }
-          if (fat_ratio[i] < 25.0)
+          if (fat_ratio[i] < 15.0)
           {
             printf(" -지방 부족: 견과류 등으로 약 %.1fg 늘리세요.\n", target_fat - fat_grams[i]);
           }
