@@ -262,7 +262,7 @@ void print_final_analysis(char name[], int input_days)
   }
 
   printf("\n====================================\n");
-  printf("[%s 님의 %d일간 종합 분석\n]", name, input_days);
+  printf("[%s 님의 %d일간 종합 분석]", name, input_days);
   printf("\n====================================\n");
   
   printf("%d일간 총 섭취 칼로리 : %.1f kcal\n", input_days, weekly_total);
