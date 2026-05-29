@@ -177,9 +177,11 @@ void print_dauly_feedback(char name[], int input_days)
     printf(" 탄수화물 : %dg | 단백질 : %dg | 지방 : %.1fg\n", carb_grams[i], protein_grams[i], fat_grams[i]);
     printf("총 칼로리 : %.1fkcal (탄수화물 : %.1f%% | 단백질 : %.1f%% | 지방 : %.1f%%)\n", total_calories[i], carb_ratio[i], protein_ratio[i], fat_ratio[i]);
 
-    if(total_calories[i] > 0)
+    if (total_calories[i] > 0)
     {
-      
+      if (carb_ratio[i] >= 45.0 && carb_ratio[i]) <=55.0 && 
+          protein_ratio[i] >= 25.0 && protein_ratio[i]) <=35.0 &&
+          fat_ratio[i] >= 15.0 && fat_ratio[i]) <=25.0
     }
       
   }
