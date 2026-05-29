@@ -4,27 +4,36 @@
   하 는 일: 칼로리 계산기
 */
 #include <stdio.h>
+#include <string.h>
+
+#define DAYS 7
 
 int main()
 {
   //1. 변수 선언
-  char category_code; // [문자형] 식사 카테고리 코드 [K(한식), W(양식), C(중식), F(패스트푸드), S(샐러드)]
-  int  carb_grams; // [정수형] 탄수화물 섭취량(g)
-  int protein_grams; // [정수형] 단백질 섭취량(g)
-  double fat_grams; // [실수형] 지방 섭취량(g)
-  double total_calories; // [실수형] 계산된 총 칼로리 결과 
 
-  //실제 섭취한 탄단지 비율(%) 변수
-  double carb_ratio;
-  double protein_ratio;
-  double fat_ratio;
-  
-  // 탄단지 5:3:2 황금비율을 위한 목표 섭취량(g) 변수 
-  double target_carb;
-  double target_protein;
-  double target_fat;
+  char user_name[50]; //사용자 이름 저장 변수
 
+  //7일 간의 데이터 누적을 위해 배열[DAYS]로 확장
+  char category_codes[DAYS]; // [문자형] 식사 카테고리 코드 [K(한식), W(양식), C(중식), F(패스트푸드), S(샐러드)]
+  int  carb_grams[DAYS]; // [정수형] 탄수화물 섭취량(g)
+  int protein_grams[DAYS]; // [정수형] 단백질 섭취량(g)
+  double fat_grams[DAYS]; // [실수형] 지방 섭취량(g)
+  double total_calories[DAYS]; // [실수형] 계산된 총 칼로리 결과 
+
+  //7일간의 일별 실제 섭취한 탄단지 비율(%) 변수
+  double carb_ratio[DAYS];
+  double protein_ratio[DAYS];
+  double fat_ratio[DAYS];
   
+  double weekely_total = 0.0; // 주간 총 섭취 칼로리 누적 변수
+  double weekly_avg = 0.0; //주간 일평균 칼로리 변수
+  int max_day = 0; // 가장 많이 먹은 날 인덱스 번호
+  int min_day = 0; // 가장 적게 먹은 날 인덱스 번호
+  int fast_food_count = 0; // 일주일간 패스트 푸드 총 횟수 카운트 변수
+
+  int i;
+ 
   //2. 프로그램 시작 및 카테고리 안내판 출력
   printf("====================================\n");
   printf(" 다이어트 점심 칼로리 계산기 \n");
