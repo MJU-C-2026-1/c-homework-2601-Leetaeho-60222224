@@ -22,7 +22,7 @@ struct Diet_Info
 
        
 
-void disply_menu(); // 메뉴 UI 출력
+void display_menu(); // 메뉴 UI 출력
 double compute_calories(int carb, int protein, double fat); // 칼로리 연산
 
 void input_diet_data(struct Diet_Info* diet, int input_days); // 식단 데이터 입력
@@ -37,7 +37,7 @@ int main()
   
   while (1)
     {
-      disply_menu(); //함수 호출
+      display_menu(); //함수 호출
 
       printf("원하는 메뉴 번호를 입력하세요 :");
       scanf("%d", &menu_choice);
@@ -53,7 +53,7 @@ int main()
         char user_name[50];
         int input_days; // 원하는 일수 저장 변수
 
-        struct Diet_Info weekly_diet[Max_DAYS];
+        struct Diet_Info weekly_diet[MAX_DAYS];
 
         printf("환영합니다! 사용자 이름을 입력해주세요 :");
         scanf("%49s", user_name);
@@ -68,8 +68,8 @@ int main()
         }
         
         input_diet_data(weekly_diet, input_days);
-        print_daily_feedback(weekely_diet, user_name, input_days);
-        print_final_analysis(weekely_diet, user_name, input_days);
+        print_daily_feedback(weekly_diet, user_name, input_days);
+        print_final_analysis(weekly_diet, user_name, input_days);
       }
       
       else
@@ -82,7 +82,7 @@ int main()
 }
 
 //메뉴 UI 출력
-void disply_menu()
+void display_menu()
 {
   printf("====================================\n");
   printf(" 다이어트 점심 칼로리 계산기 \n");
@@ -248,7 +248,7 @@ void print_final_analysis(const struct Diet_Info* diet, char name[], int input_d
   {
     weekly_total += diet[i].total_calories;
 
-    if (diet[i].category_code] == 'F' || diet[i].category_code == 'f')
+    if (diet[i].category_code == 'F' || diet[i].category_code == 'f')
     {
       fast_food_count++;
     }
