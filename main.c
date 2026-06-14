@@ -18,7 +18,7 @@ struct Diet_Info
   double carb_ratio; // 탄수화물 비율(%)
   double protein_ratio; // 단백질 비율)%
   double fat_ratio; // 지방 비율(%)
-}
+};
 
        
 
@@ -53,7 +53,7 @@ int main()
         char user_name[50];
         int input_days; // 원하는 일수 저장 변수
 
-        struct Diet_Info weekly_diet[Max_DAYS]
+        struct Diet_Info weekly_diet[Max_DAYS];
 
         printf("환영합니다! 사용자 이름을 입력해주세요 :");
         scanf("%49s", user_name);
@@ -67,7 +67,7 @@ int main()
           continue;
         }
         
-        input_diet_data(weekely_diet, input_days);
+        input_diet_data(weekly_diet, input_days);
         print_daily_feedback(weekely_diet, user_name, input_days);
         print_final_analysis(weekely_diet, user_name, input_days);
       }
@@ -100,7 +100,7 @@ double compute_calories(int carb, int protein, double fat)
 }
 
 //영양소 데이터 입력 및 비율 연산
-void input_diet_data(struct Diet_Info*, int input_days)
+void input_diet_data(struct Diet_Info* diet, int input_days)
 {
   int i;
 
@@ -114,7 +114,7 @@ void input_diet_data(struct Diet_Info*, int input_days)
           printf("[%d일차 점심 입력]\n", i + 1);
 
           printf("카테고리 (K/W/C/F/S) : ");
-          scanf(" %c", &diet[i].category_codes);
+          scanf(" %c", &diet[i].category_code);
 
           printf("탄수화물(g): ");
           scanf("%d", &diet[i].carb_grams);
@@ -157,7 +157,7 @@ void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_d
     double target_fat = (diet[i].total_calories * 0.20) / 9.0;
 
     printf("\n ---%d일차 [", i + 1);
-    switch (diet[i].category_codes)
+    switch (diet[i].category_code)
     {
       case 'K': case'k':
         printf("한식");
@@ -226,7 +226,7 @@ void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_d
       }
     }
     
-    if (diet[i].category_codes == 'F' || diet[i].category_codes == 'f')
+    if (diet[i].category_code == 'F' || diet[i].category_code == 'f')
     {
       printf("경고 : 패스트 푸드를 드셨군요! 칼로리와 지방이 좋더라도 안심할 수 없습니다.");
     }
@@ -248,7 +248,7 @@ void print_final_analysis(const struct Diet_Info* diet, char name[], int input_d
   {
     weekly_total += diet[i].total_calories;
 
-    if (diet[i].category_codes == 'F' || diet[i].category_codes == 'f')
+    if (diet[i].category_code] == 'F' || diet[i].category_code == 'f')
     {
       fast_food_count++;
     }
@@ -262,7 +262,7 @@ void print_final_analysis(const struct Diet_Info* diet, char name[], int input_d
     {
       max_day = i;
     }
-    if (diet[i]total_calories < diet[min_day].total_calories)
+    if (diet[i].total_calories < diet[min_day].total_calories)
     {
       min_day = i;
     }
