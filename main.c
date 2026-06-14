@@ -157,7 +157,7 @@ void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_d
     double target_fat = (diet[i].total_calories * 0.20) / 9.0;
 
     printf("\n ---%d일차 [", i + 1);
-    switch (category_codes[i])
+    switch (diet[i].category_codes)
     {
       case 'K': case'k':
         printf("한식");
@@ -181,12 +181,12 @@ void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_d
     
     printf("] ---\n");
 
-    printf(" 탄수화물 : %dg | 단백질 : %dg | 지방 : %.1fg\n", carb_grams[i], protein_grams[i], fat_grams[i]);
-    printf("총 칼로리 : %.1fkcal (탄수화물 : %.1f%% | 단백질 : %.1f%% | 지방 : %.1f%%)\n", total_calories[i], carb_ratio[i], protein_ratio[i], fat_ratio[i]);
+    printf(" 탄수화물 : %dg | 단백질 : %dg | 지방 : %.1fg\n", diet[i].carb_grams, diet[i].protein_grams, diet[i].fat_grams);
+    printf("총 칼로리 : %.1fkcal (탄수화물 : %.1f%% | 단백질 : %.1f%% | 지방 : %.1f%%)\n", diet[i].total_calories, diet[i].carb_ratio, diet[i].protein_ratio, diet[i].fat_ratio);
 
-    if (total_calories[i] > 0)
+    if (diet[i].total_calories > 0)
     {
-      if (carb_ratio[i] >= 45.0 && carb_ratio[i] <=55.0 && protein_ratio[i] >= 25.0 && protein_ratio[i] <=35.0 &&fat_ratio[i] >= 15.0 && fat_ratio[i] <=25.0)
+      if (diet[i].carb_ratio >= 45.0 && diet[i].carb_ratio <=55.0 && diet[i].protein_ratio >= 25.0 && diet[i].protein_ratio <=35.0 && diet[i].fat_ratio >= 15.0 && diet[i].fat_ratio <=25.0)
       {
         printf(" [피드백]\n 탄단지 황금비율이 완벽합니다.\n");
       }
@@ -196,37 +196,37 @@ void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_d
         printf("[상세 피드백]\n");
         {
           //탄수화물 검사
-          if (carb_ratio[i] > 55.0)
+          if (diet[i].carb_ratio > 55.0)
           {
-            printf(" - 탄수화물 초과: 밥이나 면을 약 %.1fg 줄이세요.\n", carb_grams[i] - target_carb);
+            printf(" - 탄수화물 초과: 밥이나 면을 약 %.1fg 줄이세요.\n", diet[i].carb_grams - target_carb);
           }
-          if (carb_ratio[i] < 45.0)
+          if (diet[i].carb_ratio < 45.0)
           {
-            printf(" - 탄수화물 부족: 밥이나 면을 약 %.1fg 늘리세요.\n", target_carb - carb_grams[i]);
+            printf(" - 탄수화물 부족: 밥이나 면을 약 %.1fg 늘리세요.\n", target_carb - diet[i].carb_grams);
           }
           //단백질 검사
-          if (protein_ratio[i] > 35.0)
+          if (diet[i].protein_ratio > 35.0)
           {
-            printf(" -단백질 초과: 고기/계란을 약 %.1fg 줄이세요.\n", protein_grams[i] - target_protein);
+            printf(" -단백질 초과: 고기/계란을 약 %.1fg 줄이세요.\n", diet[i].protein_grams - target_protein);
           }
-          if (protein_ratio[i] < 25.0)
+          if (diet[i].protein_ratio < 25.0)
           {
-            printf(" -단백질 부족: 고기/계란을 약 %.1fg 늘리세요.\n", target_protein - protein_grams[i]);
+            printf(" -단백질 부족: 고기/계란을 약 %.1fg 늘리세요.\n", target_protein - diet[i].protein_grams);
           }
           //지방 검사
-          if (fat_ratio[i] > 25.0)
+          if (diet[i].fat_ratio > 25.0)
           {
-            printf(" -지방 초과: 기름진 음식 약 %.1fg 줄이세요.\n", fat_grams[i] - target_fat);
+            printf(" -지방 초과: 기름진 음식 약 %.1fg 줄이세요.\n", diet[i].fat_grams - target_fat);
           }
-          if (fat_ratio[i] < 15.0)
+          if (diet[i].fat_ratio < 15.0)
           {
-            printf(" -지방 부족: 견과류 등으로 약 %.1fg 늘리세요.\n", target_fat - fat_grams[i]);
+            printf(" -지방 부족: 견과류 등으로 약 %.1fg 늘리세요.\n", target_fat - diet[i].fat_grams);
           }
         }
       }
     }
     
-    if (category_codes[i] == 'F' || category_codes[i] == 'f')
+    if (diet[i].category_codes == 'F' || diet[i].category_codes == 'f')
     {
       printf("경고 : 패스트 푸드를 드셨군요! 칼로리와 지방이 좋더라도 안심할 수 없습니다.");
     }
@@ -234,7 +234,7 @@ void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_d
 }
 
 // 종합 분석 출력
-void print_final_analysis(char name[], int input_days)
+void print_final_analysis(const struct Diet_Info* diet, char name[], int input_days)
 {
   double weekly_total = 0.0; // 주간 총 섭취 칼로리 누적 변수
   double weekly_avg = 0.0; //주간 일평균 칼로리 변수
@@ -246,9 +246,9 @@ void print_final_analysis(char name[], int input_days)
 
   for (i = 0; i < input_days; i++)
   {
-    weekly_total += total_calories[i];
+    weekly_total += diet[i].total_calories;
 
-    if (category_codes[i] == 'F' || category_codes[i] == 'f')
+    if (diet[i].category_codes == 'F' || diet[i].category_codes == 'f')
     {
       fast_food_count++;
     }
@@ -258,11 +258,11 @@ void print_final_analysis(char name[], int input_days)
 
   for (i = 1; i < input_days; i++) //최대, 최소 칼로리 일차 
   {
-    if (total_calories[i] > total_calories[max_day])
+    if (diet[i].total_calories > diet[max_day].total_calories)
     {
       max_day = i;
     }
-    if (total_calories[i] < total_calories[min_day])
+    if (diet[i]total_calories < diet[min_day].total_calories)
     {
       min_day = i;
     }
@@ -277,8 +277,8 @@ void print_final_analysis(char name[], int input_days)
 
   if (input_days > 1)
   {
-    printf("가장 많이 먹은 날: %d일차 (%.1f kcal)\n", max_day +1, total_calories[max_day]);
-    printf("가장 적게 먹은 날: %d일차 (%.1f kcal)\n", min_day +1, total_calories[min_day]);
+    printf("가장 많이 먹은 날: %d일차 (%.1f kcal)\n", max_day +1, diet[max_day].total_calories);
+    printf("가장 적게 먹은 날: %d일차 (%.1f kcal)\n", min_day +1, diet[min_day].total_calories);
   }
 
   printf(" 패스트푸드 섭취 횟수 : %d회", fast_food_count);
