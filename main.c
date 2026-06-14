@@ -8,22 +8,27 @@
 
 #define MAX_DAYS 7
 
-char category_codes[MAX_DAYS]; // [문자형] 식사 카테고리 코드 [K(한식), W(양식), C(중식), F(패스트푸드), S(샐러드)]
-int  carb_grams[MAX_DAYS]; // [정수형] 탄수화물 섭취량(g)
-int protein_grams[MAX_DAYS]; // [정수형] 단백질 섭취량(g)
-double fat_grams[MAX_DAYS]; // [실수형] 지방 섭취량(g)
-double total_calories[MAX_DAYS]; // [실수형] 계산된 총 칼로리 결과 
+struct Diet_Info
+{
+  char category_code; // [문자형] 식사 카테고리 코드 [K(한식), W(양식), C(중식), F(패스트푸드), S(샐러드)]
+  int  carb_grams; // [정수형] 탄수화물 섭취량(g)
+  int protein_grams; // [정수형] 단백질 섭취량(g)
+  double fat_grams; // [실수형] 지방 섭취량(g)
+  double total_calories; // [실수형] 계산된 총 칼로리 결과
+  double carb_ratio; // 탄수화물 비율(%)
+  double protein_ratio; // 단백질 비율)%
+  double fat_ratio; // 지방 비율(%)
+}
 
-//7일간의 일별 실제 섭취한 탄단지 비율(%) 변수
-double carb_ratio[MAX_DAYS];
-double protein_ratio[MAX_DAYS];
-double fat_ratio[MAX_DAYS];       
+       
 
 void disply_menu(); // 메뉴 UI 출력
 double compute_calories(int carb, int protein, double fat); // 칼로리 연산
-void input_diet_data(int input_days); // 식단 데이터 입력
-void print_daily_feedback(char name[], int input_days); // 일별 영양 피드백
-void print_final_analysis(char name[], int input_days); // 종합 통계
+
+void input_diet_data(struct Diet_Info* diet, int input_days); // 식단 데이터 입력
+
+void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_days); // 일별 영양 피드백
+void print_final_analysis(const struct Diet_Info* diet, char name[], int input_days); // 종합 통계
 
 //메인 함수
 int main()
@@ -48,8 +53,10 @@ int main()
         char user_name[50];
         int input_days; // 원하는 일수 저장 변수
 
+        struct Diet_Info weekly_diet[Max_DAYS]
+
         printf("환영합니다! 사용자 이름을 입력해주세요 :");
-        scanf("%s", user_name);
+        scanf("%49s", user_name);
 
         printf("며칠 동안의 식단을 기록하시곘습니까? (1~%d일:)", MAX_DAYS);
         scanf("%d", &input_days);
@@ -60,9 +67,9 @@ int main()
           continue;
         }
         
-        input_diet_data(input_days);
-        print_daily_feedback(user_name, input_days);
-        print_final_analysis(user_name, input_days);
+        input_diet_data(weekely_diet, input_days);
+        print_daily_feedback(weekely_diet, user_name, input_days);
+        print_final_analysis(weekely_diet, user_name, input_days);
       }
       
       else
@@ -93,7 +100,7 @@ double compute_calories(int carb, int protein, double fat)
 }
 
 //영양소 데이터 입력 및 비율 연산
-void input_diet_data(int input_days)
+void input_diet_data(struct Diet_Info*, int input_days)
 {
   int i;
 
@@ -107,36 +114,36 @@ void input_diet_data(int input_days)
           printf("[%d일차 점심 입력]\n", i + 1);
 
           printf("카테고리 (K/W/C/F/S) : ");
-          scanf(" %c", &category_codes[i]);
+          scanf(" %c", &diet[i].category_codes);
 
           printf("탄수화물(g): ");
-          scanf("%d", &carb_grams[i]);
+          scanf("%d", &diet[i].carb_grams);
 
           printf("단백질(g): ");
-          scanf("%d", &protein_grams[i]);
+          scanf("%d", &diet[i].protein_grams);
 
           printf("지방(g): ");
-          scanf("%lf", &fat_grams[i]);
+          scanf("%lf", &diet[i].fat_grams);
 
-          total_calories[i] = compute_calories(carb_grams[i], protein_grams[i], fat_grams[i]);
+          diet[i].total_calories = compute_calories(diet[i].carb_grams, diet[i].protein_grams, diet[i].fat_grams);
           
-          if (total_calories[i] > 0)
+          if (diet[i].total_calories > 0)
           {
           // 실제 비율(%) 계산 = (각 영양소 칼로리 / 총 칼로리) * 100
-          carb_ratio[i] = (carb_grams[i] * 4.0) / total_calories[i] * 100;
-          protein_ratio[i] = ( protein_grams[i] * 4.0) / total_calories[i] * 100;
-          fat_ratio[i] = (fat_grams[i] * 9.0) / total_calories[i] * 100;
+          diet[i].carb_ratio = (diet[i].carb_grams * 4.0) / diet[i]. total_calories * 100;
+          diet[i].protein_ratio = (diet[i].protein_grams * 4.0) / diet[i].total_calories * 100;
+          diet[i].fat_ratio= (diet[i].fat_grams* 9.0) / diet[i].total_calories * 100;
           }
           else
           {
-            carb_ratio[i] = protein_ratio[i] = fat_ratio[i] = 0.0;
+            diet[i].carb_ratio = diet[i].protein_ratio = diet[i].fat_ratio = 0.0;
           }
-          printf("-> %.1f kcal 기록 완료.\n", total_calories[i]);
+          printf("-> %.1f kcal 기록 완료.\n", diet[i].total_calories);
         }
 }
 
 //일별 탄단지 황금비율 매칭 및 피드백 출력
-void print_daily_feedback(char name[], int input_days)
+void print_daily_feedback(const struct Diet_Info* diet, char name[], int input_days)
 {
   int i;
   printf("\n====================================\n");
@@ -145,9 +152,9 @@ void print_daily_feedback(char name[], int input_days)
 
   for (i = 0; i < input_days; i++)
   {
-    double target_carb = (total_calories[i] * 0.50) / 4.0;
-    double target_protein = (total_calories[i] * 0.30) / 4.0;
-    double target_fat = (total_calories[i] * 0.20) / 9.0;
+    double target_carb = (diet[i].total_calories * 0.50) / 4.0;
+    double target_protein = (diet[i].total_calories * 0.30) / 4.0;
+    double target_fat = (diet[i].total_calories * 0.20) / 9.0;
 
     printf("\n ---%d일차 [", i + 1);
     switch (category_codes[i])
